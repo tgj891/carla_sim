@@ -1,13 +1,13 @@
-# Carla Sim - Carla 仿真 + ROS + 深度学习实战
+# Carla Sim - Carla 仿真 + ROS1 + 感知相关算法实战
 
-> 自动驾驶感知仿真系列教程配套代码
-> 公众号：感知技术life | B站/CSDN 同步更新
+> 感知仿真系列教程配套代码
+> 公众号：感知技术life
 
 ---
 
 ## 项目简介
 
-基于 **Carla 仿真环境 + ROS1 + 深度学习** 的自动驾驶感知实战系列，从环境搭建到目标检测、BEV拼接、语义分割，一步步带你跑通完整的感知数据流。
+基于 **Carla 仿真环境 + ROS1 + 感知相关算法实战** 的感知实战系列，从环境搭建到目标检测、BEV拼接、语义分割，一步步带你跑通完整的感知数据流。
 
 ## 系列教程（1-6期）
 
@@ -21,11 +21,9 @@
 | 06 | 实时语义分割（SegFormer / YOLOPv2） | 已完成 |
 
 ## 环境要求
-
-- Ubuntu 18.04+
-- Docker（推荐）
-- NVIDIA GPU（6GB+ 显存）
-- Carla 仿真环境
+- Ubuntu 22.04
+- Docker
+- Nvidia GPU
 
 ## 快速开始
 
@@ -77,6 +75,6 @@ carla_sim/
 ## 联系我们
 
 - 公众号：感知技术life
-- B站：感知技术life
-- CSDN：感知技术life
-- 技术交流群：公众号回复"加群"
+![图片](data/pictures/gzh.jpg)
+- 技术交流群：公众号回复"社群"
+- B站：https://space.bilibili.com/1990924908
