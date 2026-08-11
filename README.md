@@ -9,7 +9,7 @@
 
 基于 **Carla 仿真环境 + ROS1 + 深度学习** 的自动驾驶感知实战系列，从环境搭建到目标检测、BEV拼接、语义分割，一步步带你跑通完整的感知数据流。
 
-## 系列目录
+## 系列教程（1-6期）
 
 | 章节 | 内容 | 状态 |
 |:----|:-----|:----:|
@@ -25,7 +25,7 @@
 - Ubuntu 18.04+
 - Docker（推荐）
 - NVIDIA GPU（6GB+ 显存）
-- Carla V1.3 镜像
+- Carla 仿真环境
 
 ## 快速开始
 
@@ -35,39 +35,48 @@ git clone https://gitee.com/buffalo891/carla_sim.git
 cd carla_sim
 
 # 2. 启动容器
-cd docker
-bash scripts/dev_start.sh
-bash scripts/dev_into.sh
+bash docker/scripts/dev_start.sh
+bash docker/scripts/dev_into.sh
 
 # 3. 启动 Carla UE4
-cd /opt/carla_ws
 bash ./CarlaUe4.sh
 ```
 
-详细步骤见各章节目录下的 README。
+详细步骤见 `docs/` 目录下各期文档。
 
 ## 目录结构
 
 ```
 carla_sim/
-├── docker/               # Docker 环境配置
-│   └── scripts/          # 启动脚本
-├── 01_env_setup/         # 环境搭建
-├── 02_spawn_npc/         # NPC 生成
-├── 03_yolo_detect/       # YOLO 检测
-├── 04_four_camera/       # 四路相机
-├── 05_bev_surround/      # BEV 拼接
-└── 06_semantic_seg/      # 语义分割
+├── docker/scripts/       # 容器启动脚本
+├── scripts/              # Python2 辅助脚本（NPC/棋盘格）
+├── tcp_bridge/           # TCP 图像传输（Py2→Py3）
+├── sim_workspace/        # 算法工作区
+│   ├── bev_surround/     # BEV 环视拼接
+│   ├── image_detect/     # YOLOv8 目标检测
+│   └── image_seg/        # 语义分割（SegFormer/YOLOPv2）
+├── docs/                 # 1-6期教程文档
+├── data/pictures/        # 运行截图
+├── ros_bridge_ws/src/    # Carla ROS Bridge 源码
+├── CarlaUe4.sh           # 启动 Carla UE4
+└── ros_bridge_env.sh     # ROS 环境配置
 ```
+
+## 环境与模型
+
+- **模型权重**：由于体积较大（数百MB），不包含在仓库中，需要自行下载
+  - YOLOv8: `yolov8s.pt`
+  - YOLOPv2: `yolopv2.pt`
+  - SegFormer: `segformer-b2-finetuned-ade-512-512`
+- **Docker 镜像包**：开箱即用的完整环境为付费产品，可关注公众号获取
 
 ## 开源协议
 
 本项目代码遵循 MIT License 开源。
 
-**注意：** Docker 镜像包为付费产品，不包含在本仓库中。需要开箱即用的完整环境，请关注公众号或访问面包多店铺。
-
 ## 联系我们
 
 - 公众号：感知技术life
 - B站：感知技术life
+- CSDN：感知技术life
 - 技术交流群：公众号回复"加群"

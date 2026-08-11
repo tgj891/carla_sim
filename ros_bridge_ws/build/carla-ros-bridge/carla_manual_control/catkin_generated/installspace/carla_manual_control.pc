@@ -1,0 +1,8 @@
+prefix=/opt/carla_ws/ros_bridge_ws/install
+
+Name: carla_manual_control
+Description: Description of carla_manual_control
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: rospy

@@ -1,0 +1,8 @@
+prefix=/opt/carla_ws/ros_bridge_ws/devel
+
+Name: pcl_recorder
+Description: Description of pcl_recorder
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

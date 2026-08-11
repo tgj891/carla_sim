@@ -1,6 +1,12 @@
+# Python
 __pycache__/
-*.pyc
-*.pyo
-*.pkl
-.DS_Store
+
+# 模型权重（大文件，单独下载）
+*.pt
+*.pth
+*.bin
+*.onnx
+sim_workspace/image_seg/weight/
+
+# 临时文件
 *.log
