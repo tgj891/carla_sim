@@ -1,4 +1,4 @@
-# Carla Tutorial - Carla 仿真 + ROS + 深度学习实战
+# Carla Sim - Carla 仿真 + ROS + 深度学习实战
 
 > 自动驾驶感知仿真系列教程配套代码
 > 公众号：感知技术life | B站/CSDN 同步更新
@@ -31,8 +31,8 @@
 
 ```bash
 # 1. 克隆仓库
-git clone https://gitee.com/buffalo891/carla-tutorial.git
-cd carla-tutorial
+git clone https://gitee.com/buffalo891/carla_sim.git
+cd carla_sim
 
 # 2. 启动容器
 cd docker
@@ -49,7 +49,7 @@ bash ./CarlaUe4.sh
 ## 目录结构
 
 ```
-carla-tutorial/
+carla_sim/
 ├── docker/               # Docker 环境配置
 │   └── scripts/          # 启动脚本
 ├── 01_env_setup/         # 环境搭建
