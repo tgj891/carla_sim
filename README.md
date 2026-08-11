@@ -68,8 +68,7 @@ carla_sim/
   - SegFormer: `segformer-b2-finetuned-ade-512-512`
 - **Docker 镜像包**：开箱即用的完整环境为付费产品，可关注公众号获取
 
-## 模型权重授权说明
-
+## 开源协议
 本项目代码遵循 MIT License 开源，但**不包含任何模型权重文件**。
 
 YOLOv8 / YOLOPv2 / SegFormer 等预训练模型版权归各自作者所有，请遵循其各自开源协议：
@@ -78,10 +77,6 @@ YOLOv8 / YOLOPv2 / SegFormer 等预训练模型版权归各自作者所有，请
 - SegFormer (NVIDIA)：Apache-2.0 / MIT
 
 如需商业使用，请自行确认并购买相应商业授权。本项目不承担因模型使用产生的授权风险。
-
-## 开源协议
-
-本项目代码遵循 MIT License 开源。
 
 ## 联系我们
 
