@@ -47,7 +47,7 @@ bash docker/scripts/dev_into.sh
 2. 启动可视化
 ```
 cd /opt/carla_ws
-python scripts/spawn_random_npc.py # 默认添加10个车5个人
-python scripts/spawn_random_npc.py _vehicle_count:=20 _walker_count:=10 #自定义添加
+python scripts/spawn_random_npc_py2.py # 默认添加10个车5个人
+python scripts/spawn_random_npc_py2.py _vehicle_count:=20 _walker_count:=10 #自定义添加
 ```
 ![图片](../data/pictures/ue4_npc.png)

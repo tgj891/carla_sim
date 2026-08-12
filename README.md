@@ -21,25 +21,31 @@
 | 06 | 实时语义分割（SegFormer / YOLOPv2） | 已完成 |
 
 ## 环境要求
-- Ubuntu 22.04
-- Docker
-- Nvidia GPU
+- Ubuntu 18.04及以上版本
+- Docker 安装
+- Nvidia GPU 驱动安装
 
 ## 快速开始
 
+### 1. 克隆仓库
 ```bash
-# 1. 克隆仓库
+
 git clone https://gitee.com/buffalo891/carla_sim.git
 cd carla_sim
-
-# 2. 启动容器
-bash docker/scripts/dev_start.sh
-bash docker/scripts/dev_into.sh
-
-# 3. 启动 Carla UE4
-bash ./CarlaUe4.sh
 ```
 
+### 2.下载镜像包
+请关注公众号:感知技术life，回复"carla"获取镜像包下载链接。
+```
+# 解压（如果下载的是 .gz）
+gzip -d carla_sim.tar.gz
+
+# 导入 Docker
+docker load -i carla_sim.tar
+
+# 确认镜像
+docker images | grep carla
+```
 详细步骤见 `docs/` 目录下各期文档。
 
 ## 目录结构
@@ -60,13 +66,12 @@ carla_sim/
 └── ros_bridge_env.sh     # ROS 环境配置
 ```
 
-## 环境与模型
+## 模型
 
 - **模型权重**：由于体积较大（数百MB），不包含在仓库中，需要自行下载
-  - YOLOv8: `yolov8s.pt`
-  - YOLOPv2: `yolopv2.pt`
-  - SegFormer: `segformer-b2-finetuned-ade-512-512`
-- **Docker 镜像包**：开箱即用的完整环境为付费产品，可关注公众号获取
+  - YOLOv8: `yolov8s.pt`,存放目录sim_workspace/image_detect/weights
+  - YOLOPv2: `yolopv2.pt`,存放目录sim_workspace/image_seg/weight
+  - SegFormer: `segformer-b2-finetuned-ade-512-512`,存放目录sim_workspace/image_seg/weight
 
 ## 开源协议
 本项目代码遵循 MIT License 开源，但**不包含任何模型权重文件**。
