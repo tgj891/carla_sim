@@ -35,7 +35,7 @@ cd carla_sim
 ```
 
 ### 2.下载镜像包
-请关注公众号:感知技术life，回复"carla"获取镜像包下载链接。
+请关注公众号:感知技术life，回复"社群"加入交流群，在群公告中可获取镜像包下载链接。
 ```
 # 解压（如果下载的是 .gz）
 gzip -d carla_sim.tar.gz
@@ -45,6 +45,12 @@ docker load -i carla_sim.tar
 
 # 确认镜像
 docker images | grep carla
+```
+### 3. 启动容器
+```
+cd carla_sim
+bash docker/scripts/dev_start.sh # 启动容器
+bash docker/scripts/dev_into.sh # 进入容器
 ```
 详细步骤见 `docs/` 目录下各期文档。
 
