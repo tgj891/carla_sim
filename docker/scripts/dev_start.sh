@@ -32,7 +32,7 @@ docker run -itd --rm --gpus all --name ${DEV_CONTAINER}       \
     -e GDK_DPI_SCALE                                                \
     --add-host ${DEV_INSIDE}:127.0.0.1                              \
     --add-host ${LOCAL_HOST}:127.0.0.1                              \
-    carlasim/carla:V1.6 /bin/bash
+    carlasim/carla:v1.0-beta /bin/bash
 
 if [ "${USER}" != "root" ]; then
     docker exec ${DEV_CONTAINER} /bin/bash -c '/bin/bash /opt/carla_ws/docker/scripts/docker_adduser.sh'
