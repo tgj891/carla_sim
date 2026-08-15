@@ -24,6 +24,8 @@
 - Ubuntu 18.04及以上版本
 - Docker 安装
 - Nvidia GPU 驱动安装
+- 安装 nvidia-container-toolkit
+- 安装 nvidia-docker2
 
 ## 快速开始
 
@@ -45,6 +47,7 @@ docker load -i carla_sim.tar
 
 # 确认镜像
 docker images | grep carla
+carlasim/carla :v1.0-beta   5493d6abf29e   2 days ago      26.7GB
 ```
 ### 3. 启动容器
 ```
