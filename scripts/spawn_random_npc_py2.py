@@ -130,8 +130,41 @@ class RandomNpcSpawner:
                 if spawn_points:
                     spawn_point = random.choice(spawn_points)
                     spawn_point.location.z += 1.0
-                    spawn_point.location.x += random.uniform(-5.0, 5.0)
-                    spawn_point.location.y += random.uniform(-5.0, 5.0)
+
+                    # 将行人偏移到人行道，避免生成在车道中间
+                    carla_map = self.carla_world.get_map()
+                    wp = carla_map.get_waypoint(spawn_point.location,
+                                                project_to_road=True,
+                                                lane_type=carla.LaneType.Driving)
+                    if wp is not None:
+                        forward = wp.transform.get_forward_vector()
+                        # 横向方向（垂直于道路方向）
+                        lateral = carla.Vector3D(-forward.y, forward.x, 0.0)
+                        # 随机选择道路左侧或右侧
+                        direction = 1.0 if random.random() > 0.5 else -1.0
+
+                        # 逐步增大偏移量，直到找到一个非车道位置
+                        placed = False
+                        for offset_m in [5.0, 8.0, 12.0, 18.0, 25.0]:
+                            test_loc = carla.Location(
+                                spawn_point.location.x + lateral.x * offset_m * direction,
+                                spawn_point.location.y + lateral.y * offset_m * direction,
+                                spawn_point.location.z
+                            )
+                            test_wp = carla_map.get_waypoint(
+                                test_loc, project_to_road=True, lane_type=carla.LaneType.Any)
+                            if test_wp is None or test_wp.lane_type != carla.LaneType.Driving:
+                                spawn_point.location = test_loc
+                                placed = True
+                                break
+
+                        if not placed:
+                            # 最终 fallback：偏移 25m
+                            spawn_point.location.x += lateral.x * 25.0 * direction
+                            spawn_point.location.y += lateral.y * 25.0 * direction
+                    else:
+                        spawn_point.location.x += random.uniform(-8.0, 8.0)
+                        spawn_point.location.y += random.uniform(-8.0, 8.0)
                 else:
                     spawn_point = carla.Transform()
                     spawn_point.location = carla.Location(0, 0, 1.0)

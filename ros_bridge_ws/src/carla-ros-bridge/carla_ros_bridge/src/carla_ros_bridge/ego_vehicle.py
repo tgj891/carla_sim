@@ -248,7 +248,7 @@ class EgoVehicle(Vehicle):
         :return:
         """
         self.node.logdebug("Ego vehicle: Set autopilot to {}".format(enable_auto_pilot.data))
-        self.carla_actor.set_autopilot(enable_auto_pilot.data)
+        self.carla_actor.set_autopilot(enable_auto_pilot.data, 8001)
 
     @staticmethod
     def get_vector_length_squared(carla_vector):
