@@ -7,9 +7,9 @@
 
 ## 项目简介
 
-基于 **Carla 仿真环境 + ROS1 + 感知相关算法实战** 的感知实战系列，从环境搭建到目标检测、BEV拼接、语义分割，一步步带你跑通完整的感知数据流。
+基于 **Carla 仿真环境 + ROS1 + 感知相关算法实战** 的感知实战系列，从环境搭建到目标检测、BEV拼接、语义分割、传感器融合、测距，一步步带你跑通完整的感知数据流。
 
-## 系列教程（1-6期）
+## 系列教程（1-10期）
 
 | 章节 | 内容 | 状态 |
 |:----|:-----|:----:|
@@ -19,6 +19,10 @@
 | 04 | Tesla 四路相机安装 | 已完成 |
 | 05 | 四路相机标定与 BEV 拼接 | 已完成 |
 | 06 | 实时语义分割（SegFormer / YOLOPv2） | 已完成 |
+| 07 | BEV + 语义分割融合 | 已完成 |
+| 08 | 点云与图像融合 | 已完成 |
+| 09 | 单目障碍物测距 | 已完成 |
+| 10 | 双目障碍物测距 | 已完成 |
 
 ## 环境要求
 - Ubuntu 18.04及以上版本
@@ -52,8 +56,8 @@ carlasim/carla :v1.0-beta   5493d6abf29e   2 days ago      26.7GB
 ### 3. 启动容器
 ```
 cd carla_sim
-bash docker/scripts/dev_start.sh # 启动容器
-bash docker/scripts/dev_into.sh # 进入容器
+bash dev_start.sh # 启动容器（docker/scripts/dev_start.sh 的快捷方式）
+bash dev_into.sh # 进入容器
 ```
 详细步骤见 `docs/` 目录下各期文档。
 
@@ -61,16 +65,22 @@ bash docker/scripts/dev_into.sh # 进入容器
 
 ```
 carla_sim/
-├── docker/scripts/       # 容器启动脚本
+├── docker/scripts/       # 容器启动脚本（dev_start/dev_into/docker_adduser）
 ├── scripts/              # Python2 辅助脚本（NPC/棋盘格）
 ├── tcp_bridge/           # TCP 图像传输（Py2→Py3）
 ├── sim_workspace/        # 算法工作区
 │   ├── bev_surround/     # BEV 环视拼接
-│   ├── image_detect/     # YOLOv8 目标检测
-│   └── image_seg/        # 语义分割（SegFormer/YOLOPv2）
-├── docs/                 # 1-6期教程文档
+│   ├── image_detect/     # YOLOv8 目标检测（单目测距）
+│   ├── image_seg/        # 语义分割（SegFormer/YOLOPv2，BEV 融合）
+│   ├── image_pointcloud/ # 点云与图像融合
+│   ├── stereo_distance/  # 双目障碍物测距
+│   └── sensor_msg/       # 自定义 ROS 消息定义
+├── docs/                 # 1-10期教程文档
 ├── data/pictures/        # 运行截图
 ├── ros_bridge_ws/src/    # Carla ROS Bridge 源码
+├── dev_start.sh          # 容器启动快捷脚本
+├── dev_into.sh           # 容器进入快捷脚本
+├── ros_rviz.sh           # 启动 RViz 教程配置
 ├── CarlaUe4.sh           # 启动 Carla UE4
 └── ros_bridge_env.sh     # ROS 环境配置
 ```
