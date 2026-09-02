@@ -7,9 +7,9 @@
 
 ## Introduction
 
-A hands-on perception tutorial series built on **CARLA simulator + ROS1**, covering the complete perception pipeline step by step: environment setup, object detection, BEV surround view, semantic segmentation, and more.
+A hands-on perception tutorial series built on **CARLA simulator + ROS1**, covering the complete perception pipeline step by step: environment setup, object detection, BEV surround view, semantic segmentation, sensor fusion, distance estimation, and more.
 
-## Tutorial Series (1-9 Episodes)
+## Tutorial Series (1-10 Episodes)
 
 | Episode | Topic | Status |
 |:-------|:------|:------:|
@@ -22,6 +22,7 @@ A hands-on perception tutorial series built on **CARLA simulator + ROS1**, cover
 | 07 | BEV + Semantic Segmentation Fusion | Done |
 | 08 | Point Cloud & Image Fusion | Done |
 | 09 | Monocular Obstacle Distance Estimation | Done |
+| 10 | Stereo Obstacle Distance Estimation | Done |
 
 ## Requirements
 
@@ -60,8 +61,8 @@ carlasim/carla :v1.0-beta   5493d6abf29e   2 days ago      26.7GB
 
 ```bash
 cd carla_sim
-bash docker/scripts/dev_start.sh  # start container
-bash docker/scripts/dev_into.sh   # enter container
+bash dev_start.sh   # start container (wrapper for docker/scripts/dev_start.sh)
+bash dev_into.sh    # enter container
 ```
 
 Detailed steps are in the `docs/` directory for each episode.
@@ -70,18 +71,22 @@ Detailed steps are in the `docs/` directory for each episode.
 
 ```
 carla_sim/
-├── docker/scripts/       # Container scripts
+├── docker/scripts/       # Container scripts (dev_start / dev_into / docker_adduser)
 ├── scripts/              # Python2 helper scripts (NPC/chessboard)
 ├── tcp_bridge/           # TCP image transfer (Py2 -> Py3)
 ├── sim_workspace/        # Algorithm workspace
 │   ├── bev_surround/     # BEV surround view stitching
-│   ├── image_detect/     # YOLOv8 object detection
-│   ├── image_seg/        # Semantic segmentation (SegFormer/YOLOPv2)
+│   ├── image_detect/     # YOLOv8 object detection (monocular distance)
+│   ├── image_seg/        # Semantic segmentation (SegFormer/YOLOPv2, BEV fusion)
 │   ├── image_pointcloud/ # Point cloud & image fusion
-│   └── pointcloud_road_detect/ # Point cloud road detection
-├── docs/                 # Tutorial docs (1-9)
+│   ├── stereo_distance/  # Stereo obstacle distance estimation
+│   └── sensor_msg/       # Custom ROS message definitions
+├── docs/                 # Tutorial docs (1-10)
 ├── data/pictures/        # Screenshots
 ├── ros_bridge_ws/src/    # CARLA ROS Bridge source
+├── dev_start.sh          # Container start wrapper
+├── dev_into.sh           # Container enter wrapper
+├── ros_rviz.sh           # Launch RViz with tutorial config
 ├── CarlaUe4.sh           # Launch CARLA UE4
 └── ros_bridge_env.sh     # ROS environment config
 ```
