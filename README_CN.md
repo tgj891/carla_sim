@@ -9,7 +9,7 @@
 
 基于 **Carla 仿真环境 + ROS1 + 感知相关算法实战** 的感知实战系列，从环境搭建到目标检测、BEV拼接、语义分割、传感器融合、测距，一步步带你跑通完整的感知数据流。
 
-## 系列教程（1-10期）
+## 系列教程（1-17期）
 
 | 章节 | 内容 | 状态 |
 |:----|:-----|:----:|
@@ -23,6 +23,13 @@
 | 08 | 点云与图像融合 | 已完成 |
 | 09 | 单目障碍物测距 | 已完成 |
 | 10 | 双目障碍物测距 | 已完成 |
+| 11 | 仿真环境的上帝视角可视化 | 已完成 |
+| 12 | 构建仿真环境的点云地图 | 已完成 |
+| 13 | 点云地面提取 | 已完成 |
+| 14 | 点云的障碍物检测 | 已完成 |
+| 15 | Carla 传感器数据接入 Fast-LIO2 + SC-PGO 建图 | 已完成 |
+| 16 | 多 LiDAR 传感器标定 | 已完成 |
+| 17 | 利用 Carla 场景跑通 3DGS 建模 | 已完成 |
 
 ## 环境要求
 - Ubuntu 18.04及以上版本
@@ -74,8 +81,14 @@ carla_sim/
 │   ├── image_seg/        # 语义分割（SegFormer/YOLOPv2，BEV 融合）
 │   ├── image_pointcloud/ # 点云与图像融合
 │   ├── stereo_distance/  # 双目障碍物测距
-│   └── sensor_msg/       # 自定义 ROS 消息定义
-├── docs/                 # 1-10期教程文档
+│   ├── sensor_msg/       # 自定义 ROS 消息定义
+│   ├── sim_view/         # 上帝视角可视化（11期）
+│   ├── pointcloud_map/   # 点云地图 + FAST-LIO2 建图（12/15期）
+│   ├── ground_segmention/# 点云地面提取（13期）
+│   ├── pointcloud_detect/# 点云障碍物检测（14期）
+│   ├── multisensor_calib/# 多雷达标定（16期）
+│   └── 3dgs_data/        # 3DGS 数据采集（17期）
+├── docs/                 # 1-17期教程文档
 ├── data/pictures/        # 运行截图
 ├── ros_bridge_ws/src/    # Carla ROS Bridge 源码
 ├── dev_start.sh          # 容器启动快捷脚本

@@ -9,7 +9,7 @@
 
 A hands-on perception tutorial series built on **CARLA simulator + ROS1**, covering the complete perception pipeline step by step: environment setup, object detection, BEV surround view, semantic segmentation, sensor fusion, distance estimation, and more.
 
-## Tutorial Series (1-10 Episodes)
+## Tutorial Series (1-17 Episodes)
 
 | Episode | Topic | Status |
 |:-------|:------|:------:|
@@ -23,6 +23,13 @@ A hands-on perception tutorial series built on **CARLA simulator + ROS1**, cover
 | 08 | Point Cloud & Image Fusion | Done |
 | 09 | Monocular Obstacle Distance Estimation | Done |
 | 10 | Stereo Obstacle Distance Estimation | Done |
+| 11 | God-View Visualization of the Simulation | Done |
+| 12 | Building a Point Cloud Map | Done |
+| 13 | Point Cloud Ground Segmentation | Done |
+| 14 | Point Cloud Obstacle Detection | Done |
+| 15 | Feeding CARLA Sensor Data into Fast-LIO2 + SC-PGO | Done |
+| 16 | Multi-LiDAR Sensor Calibration | Done |
+| 17 | 3DGS Reconstruction from CARLA Scenes | Done |
 
 ## Requirements
 
@@ -80,8 +87,14 @@ carla_sim/
 │   ├── image_seg/        # Semantic segmentation (SegFormer/YOLOPv2, BEV fusion)
 │   ├── image_pointcloud/ # Point cloud & image fusion
 │   ├── stereo_distance/  # Stereo obstacle distance estimation
-│   └── sensor_msg/       # Custom ROS message definitions
-├── docs/                 # Tutorial docs (1-10)
+│   ├── sensor_msg/       # Custom ROS message definitions
+│   ├── sim_view/         # God-view visualization (Ep.11)
+│   ├── pointcloud_map/   # Point cloud map + Fast-LIO2 (Ep.12/15)
+│   ├── ground_segmention/# Ground segmentation (Ep.13)
+│   ├── pointcloud_detect/# Point cloud obstacle detection (Ep.14)
+│   ├── multisensor_calib/# Multi-LiDAR calibration (Ep.16)
+│   └── 3dgs_data/        # 3DGS data collection (Ep.17)
+├── docs/                 # Tutorial docs (1-17)
 ├── data/pictures/        # Screenshots
 ├── ros_bridge_ws/src/    # CARLA ROS Bridge source
 ├── dev_start.sh          # Container start wrapper

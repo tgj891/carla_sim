@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>点云融合</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/fusion.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+</head>
+<body>
+    <div class="fusion-container">
+        <!-- 左侧面板 -->
+        <div class="fusion-sidebar">
+            <h2>点云话题</h2>
+            <input type="text" id="topicFilter" placeholder="搜索话题...">
+            <ul id="topicList" class="topic-list"></ul>
+            <div class="fusion-info">
+                <div>总点数: <span id="pointCount">0</span></div>
+                <div>已订阅: <span id="subCount">0</span></div>
+            </div>
+            <a href="/" class="back-link">返回标定页</a>
+        </div>
+
+        <!-- 3D 渲染区域 -->
+        <div class="fusion-viewer">
+            <div id="threeContainer"></div>
+            <div class="viewer-info">
+                <span>鼠标左键: 旋转 | 右键: 平移 | 滚轮: 缩放</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/fusion.js') }}?v={{ range(100000) | random }}"></script>
+</body>
+</html>

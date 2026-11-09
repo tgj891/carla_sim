@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>多传感器标定工具</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- 左侧面板：话题列表 -->
+        <div class="sidebar">
+            <h2>ROS 话题列表</h2>
+            <a href="/fusion" class="fusion-link">点云融合页面</a>
+            <div class="topic-filter">
+                <input type="text" id="topicFilter" placeholder="搜索话题...">
+                <select id="typeFilter">
+                    <option value="">全部类型</option>
+                    <option value="sensor_msgs/PointCloud2">点云</option>
+                    <option value="sensor_msgs/Image">图像</option>
+                    <option value="sensor_msgs/CompressedImage">压缩图像</option>
+                </select>
+            </div>
+            <ul id="topicList" class="topic-list"></ul>
+        </div>
+
+        <!-- 中间区域：可视化显示 -->
+        <div class="main-content">
+            <div class="tab-container">
+                <div class="tabs">
+                    <button class="tab-btn active" data-tab="pointcloud">点云可视化</button>
+                    <button class="tab-btn" data-tab="image">图像显示</button>
+                </div>
+
+                <!-- 点云可视化 -->
+                <div id="pointcloud-tab" class="tab-content active">
+                    <div class="projection-container">
+                        <div class="projection-view">
+                            <h3>XY 平面投影</h3>
+                            <canvas id="xyCanvas"></canvas>
+                        </div>
+                        <div class="projection-view">
+                            <h3>XZ 平面投影</h3>
+                            <canvas id="xzCanvas"></canvas>
+                        </div>
+                        <div class="projection-view">
+                            <h3>YZ 平面投影</h3>
+                            <canvas id="yzCanvas"></canvas>
+                        </div>
+                    </div>
+                    <div class="pointcloud-info">
+                        <span id="pointCount">点数: 0</span>
+                        <span id="currentTopic">当前话题: 无</span>
+                    </div>
+                </div>
+
+                <!-- 图像显示 -->
+                <div id="image-tab" class="tab-content">
+                    <div class="image-container">
+                        <img id="imageDisplay" alt="等待图像...">
+                    </div>
+                    <div class="image-info">
+                        <span id="imageInfo">等待图像数据...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 右侧面板：标定控制 -->
+        <div class="control-panel">
+            <h2>激光雷达标定</h2>
+            
+            <div class="control-section">
+                <h3>选择激光雷达话题</h3>
+                <select id="lidarSelect">
+                    <option value="">请选择...</option>
+                </select>
+                <button id="selectLidarBtn" class="btn">选择</button>
+            </div>
+
+            <div class="control-section">
+                <h3>平移参数 (m)</h3>
+                <div class="param-row">
+                    <label>X:</label>
+                    <input type="number" id="paramX" value="0" step="0.01">
+                </div>
+                <div class="param-row">
+                    <label>Y:</label>
+                    <input type="number" id="paramY" value="0" step="0.01">
+                </div>
+                <div class="param-row">
+                    <label>Z:</label>
+                    <input type="number" id="paramZ" value="0" step="0.01">
+                </div>
+            </div>
+
+            <div class="control-section">
+                <h3>旋转参数 (度)</h3>
+                <div class="param-row">
+                    <label>Roll:</label>
+                    <input type="number" id="paramRoll" value="0" step="0.1">
+                </div>
+                <div class="param-row">
+                    <label>Pitch:</label>
+                    <input type="number" id="paramPitch" value="0" step="0.1">
+                </div>
+                <div class="param-row">
+                    <label>Yaw:</label>
+                    <input type="number" id="paramYaw" value="0" step="0.1">
+                </div>
+            </div>
+
+            <div class="control-section">
+                <h3>变换矩阵 T</h3>
+                <pre id="transformMatrix">[[1, 0, 0, 0],
+ [0, 1, 0, 0],
+ [0, 0, 1, 0],
+ [0, 0, 0, 1]]</pre>
+                <button id="saveParamsBtn" class="btn btn-primary" style="margin-top:10px;width:100%;">保存参数</button>
+            </div>
+
+            <div class="control-section">
+                <h3>投影线控制</h3>
+                <p style="font-size:12px;color:#aaa;line-height:1.6;">
+                点击投影区域后，用键盘控制：<br>
+                <b>XY 平面</b>：↑↓ 移水平线，←→ 移垂直线<br>
+                <b>XZ 平面</b>：↑↓ 移水平线<br>
+                <b>YZ 平面</b>：↑↓ 移水平线<br>
+                步长 0.2m
+                </p>
+                <div class="line-info">
+                    <div>XY水平(y): <span id="valXYH">0.0</span></div>
+                    <div>XY垂直(x): <span id="valXYV">0.0</span></div>
+                    <div>XZ水平(z): <span id="valXZH">0.0</span></div>
+                    <div>YZ水平(z): <span id="valYZH">0.0</span></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}?v={{ range(100000) | random }}"></script>
+</body>
+</html>

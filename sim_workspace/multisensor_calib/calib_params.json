@@ -1,0 +1,26 @@
+{
+  "/carla/ego_vehicle/front_lidar_transformed": {
+    "yaw": 0.0, 
+    "pitch": -3.0, 
+    "y": 0.0, 
+    "x": 0.0, 
+    "z": 0.0, 
+    "roll": 0.0
+  }, 
+  "/carla/ego_vehicle/rightback_lidar_transformed": {
+    "yaw": 0.0, 
+    "pitch": 0.0, 
+    "y": 0.1, 
+    "x": 0.0, 
+    "z": 0.0, 
+    "roll": -2.0
+  }, 
+  "/carla/ego_vehicle/leftback_lidar_transformed": {
+    "yaw": -3.0, 
+    "pitch": 0.0, 
+    "y": 0.0, 
+    "x": -0.1, 
+    "z": 0.0, 
+    "roll": 0.0
+  }
+}
